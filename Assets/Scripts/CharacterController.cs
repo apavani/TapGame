@@ -90,19 +90,19 @@ public class CharacterController : MonoBehaviour {
     {
         this.isTransitioning = true;
         //first finish animation
-        anim.SetInteger("State", 1);
-        while (anim.GetAnimatorTransitionInfo(0).IsName("left"))
+        anim.Play("moveleft", 0,float.NegativeInfinity);
+        while (anim.GetAnimatorTransitionInfo(0).IsName("moveleft"))
             yield return null;
 
         //set animation back to idle
-        anim.SetInteger("State", 1);
+        anim.Play("idle", 0, float.NegativeInfinity);
 
         //move the character
         float startTime = Time.time;
         float journeyLength = Vector3.Distance(transform.position, mData.target);
         Vector3 startPosition = transform.position;
         Vector3 cameraStart = Camera.main.transform.position;
-        float speed = 15f;
+        float speed = 15f*mData.tapCount;
         while (transform.position.y < mData.target.y)
         {
             float distCovered = (Time.time - startTime) * speed;
