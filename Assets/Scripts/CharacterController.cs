@@ -90,12 +90,12 @@ public class CharacterController : MonoBehaviour {
     {
         this.isTransitioning = true;
         //first finish animation
-        anim.Play("moveleft", 0,float.NegativeInfinity);
-        while (anim.GetAnimatorTransitionInfo(0).IsName("moveleft"))
+        anim.SetInteger("State", 1);
+        while (anim.GetAnimatorTransitionInfo(0).IsName("left"))
             yield return null;
 
         //set animation back to idle
-        anim.Play("idle", 0, float.NegativeInfinity);
+
 
         //move the character
         float startTime = Time.time;
@@ -112,6 +112,7 @@ public class CharacterController : MonoBehaviour {
             Camera.main.transform.position = new Vector3(cameraStart.x, cameraStart.y+deltaCharacter, cameraStart.z);
             yield return null;
         }
+        anim.SetInteger("State", 0);
         this.isTransitioning = false;
     }
 }
@@ -120,4 +121,5 @@ public class MovementData
 {
     public Vector3 target;
     public int tapCount;
+    public int direction;
 }
