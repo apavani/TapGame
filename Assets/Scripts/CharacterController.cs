@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
     Animator anim;
+	public float xoffset, yoffset;
     float upMag, sideMag;
     bool one_click = false;
     float timer_for_double_click;
@@ -16,6 +17,8 @@ public class CharacterController : MonoBehaviour {
     void Start() {
         upMag = 2f;
         sideMag = 4f;
+		xoffset = 5.3334f;
+		yoffset = 5.73f;
 
         anim = GetComponent<Animator>();
     }
@@ -71,13 +74,13 @@ public class CharacterController : MonoBehaviour {
         {
             if (Input.mousePosition.x > Screen.width / 2)
             {
-                mData.target = new Vector3(transform.position.x+5*tapCount, transform.position.y+4);
+                mData.target = new Vector3(transform.position.x+xoffset*tapCount, transform.position.y+yoffset);
                 StopCoroutine("MoveNext");
                 StartCoroutine("MoveNext");
             }
             if (Input.mousePosition.x < Screen.width / 2)
             {
-                mData.target = new Vector3(transform.position.x-5*tapCount, transform.position.y+4);
+                mData.target = new Vector3(transform.position.x-xoffset*tapCount, transform.position.y+yoffset);
                 StopCoroutine("MoveNext");
                 StartCoroutine("MoveNext");
             }
