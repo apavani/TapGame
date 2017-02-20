@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{231DD861-28DF-FB76-352D-7574F938E742}") = "jumpy tree 3", "Assembly-CSharp.csproj", "{DC487C99-122E-D44D-A629-A9A9976992EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC487C99-122E-D44D-A629-A9A9976992EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC487C99-122E-D44D-A629-A9A9976992EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC487C99-122E-D44D-A629-A9A9976992EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC487C99-122E-D44D-A629-A9A9976992EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
