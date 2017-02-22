@@ -73,13 +73,19 @@ public class CharacterController : MonoBehaviour {
         if (tapCount > 0)
         {
             if (Input.mousePosition.x > Screen.width / 2)
-            {
+			{ 	if (currentBranch == 4) {
+					Die ();
+					return;
+				}
                 mData.target = new Vector3(transform.position.x+xoffset*tapCount, transform.position.y+yoffset);
                 StopCoroutine("MoveNext");
                 StartCoroutine("MoveNext");
             }
             if (Input.mousePosition.x < Screen.width / 2)
-            {
+			{   if (currentBranch == 1) {
+					Die ();
+					return;
+				}
                 mData.target = new Vector3(transform.position.x-xoffset*tapCount, transform.position.y+yoffset);
                 StopCoroutine("MoveNext");
                 StartCoroutine("MoveNext");
@@ -117,7 +123,37 @@ public class CharacterController : MonoBehaviour {
         }
         anim.SetInteger("State", 0);
         this.isTransitioning = false;
+	}
+
+		int currentBranch = 0;
+		void OnTriggerEnter(Collider other){
+			switch(other.gameObject.tag)
+			{
+			case ("1"):
+				currentBranch = 1;
+				Debug.Log("1st branch");
+				break;
+			case ("2"):
+				currentBranch = 2;
+				Debug.Log("2nd branch");
+				break;
+			case ("3"):
+				currentBranch = 3;
+				Debug.Log("3rd branch");
+				break;
+			case ("4"):
+				currentBranch = 4;
+				Debug.Log("4th branch");
+				break;
+			default:
+				break;
+			}
     }
+
+	void Die(){
+		Debug.Log ("Died");
+	}
+
 }
 
 public class MovementData
