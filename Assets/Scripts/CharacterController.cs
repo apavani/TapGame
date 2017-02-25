@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterController : MonoBehaviour {
     Animator anim;
@@ -73,7 +74,7 @@ public class CharacterController : MonoBehaviour {
         if (tapCount > 0)
         {
             if (Input.mousePosition.x > Screen.width / 2)
-			{ 	if (currentBranch == 4) {
+			{ 	if ((currentBranch == 4 && tapCount==1) || (currentBranch == 3 && tapCount == 2)) {
 					Die ();
 					return;
 				}
@@ -82,7 +83,7 @@ public class CharacterController : MonoBehaviour {
                 StartCoroutine("MoveNext");
             }
             if (Input.mousePosition.x < Screen.width / 2)
-			{   if (currentBranch == 1) {
+			{   if ((currentBranch == 1 && tapCount==1) || (currentBranch == 2 && tapCount == 2)) {
 					Die ();
 					return;
 				}
@@ -151,9 +152,35 @@ public class CharacterController : MonoBehaviour {
     }
 
 	void Die(){
-		Debug.Log ("Died");
+        StopAllCoroutines();
+        StartCoroutine("DieSequence");
 	}
 
+    IEnumerator DieSequence()
+    {
+        /*
+        float startTime = Time.time;
+        Vector3 startPosition = transform.position;
+        float distCovered = (Time.time - startTime) * 0.1f;
+        float journeyLength = 0.3f;
+        float fracJourney = distCovered / journeyLength;
+        while (transform.position.x< transform.position.x + journeyLength)
+        {
+            Vector3.Lerp(transform.position, mData.target, fracJourney);
+        }
+        */
+        int blinkCount = 0;
+        while (blinkCount < 3)
+        {
+            GetComponent<Renderer>().enabled = false;
+            yield return new WaitForSeconds(0.15f);
+            GetComponent<Renderer>().enabled = true;
+            yield return new WaitForSeconds(0.15f);
+            blinkCount++;
+        }
+
+        SceneManager.LoadScene(0);
+    }
 }
 
 public class MovementData
