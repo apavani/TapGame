@@ -12,11 +12,11 @@ public class GameManager : MonoBehaviour {
 	          {
 		         GameObject trunkempty = Instantiate (branchPrefabs [1]);
 		         trunkempty.transform.parent = gameObject.transform;
-			     trunkempty.transform.localPosition = new Vector3(0f, i*4.5f, 0f);
+			     trunkempty.transform.localPosition = new Vector3(0f, i*10f, 0f);
 
 			     GameObject trunkempty_ = Instantiate (getrandombranch());
 		         trunkempty_.transform.parent = gameObject.transform;
-			     trunkempty_.transform.localPosition = new Vector3(0f, (i+1)*4.5f, 0f);
+			     trunkempty_.transform.localPosition = new Vector3(0f, (i+1)*10f, 0f);
 	           }
 	               }
 	
@@ -31,12 +31,6 @@ public class GameManager : MonoBehaviour {
 
 		if (random <= 50) {
 			return branchPrefabs [1];
-		} else if (random <= 100){
-			return branchPrefabs [2];
-		} else if (random <= 150) {
-			return branchPrefabs [3];
-		}else if (random <= 200) {
-			return branchPrefabs [4];
 		}		
 
 		return branchPrefabs [0];
